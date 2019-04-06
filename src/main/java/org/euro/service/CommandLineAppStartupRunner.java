@@ -25,7 +25,6 @@ public class CommandLineAppStartupRunner  implements CommandLineRunner {
         User user = userRepository.findByUsername("admin");
         if (user == null){
             User admin = new User();
-            admin.setId(1L);
             admin.setActivationCode(null);
             admin.setActive(true);
             admin.setAvatar(null);

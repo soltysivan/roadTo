@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Tel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String text;
 

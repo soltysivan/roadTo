@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Trip implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long Id;
     @NotBlank(message = "Поле не може бути пустим")
     private String beginning;
