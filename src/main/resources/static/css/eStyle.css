@@ -1,0 +1,53 @@
+.containerFormExc{
+    margin-top: 50px;
+}
+.containerFormExc{
+    width: 700px;
+    height: 320px;
+    margin-left: 50px;
+    background-color: rgb(128,128,128, 0.5);
+    box-shadow: 0 -5px 0 #000000;
+    padding-bottom: 50px;
+    border-radius: 0 0 10px 10px;
+    margin-top: 110px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.containerFormExc img{
+    width: 450px;
+    height: 380px;
+    margin: -20px 0 30px -180px;
+    border: 5px solid #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 -5px 0 #000000;
+}
+.buttonExRed{
+    margin-top: 150px;
+}
+.textEx{
+    padding-top: 10px;
+    text-align: center;
+    width: 400px;
+    float: right;
+}
+.dateTrip{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 40px;
+}
+.textTrip{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 35px;
+}
+.info{
+    color: white;
+    padding-bottom: 50px;
+}
+.info2{
+    text-transform: uppercase;
+    color: #ff140a;
+}
+

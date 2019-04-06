@@ -1,0 +1,118 @@
+html { height: 100%; }
+body{
+    margin: 0;
+    height: 100%;
+	background: #000000 url("../img/fon_lenty_radiaciya_opasnost_stena_18526_1920x1080.jpg")no-repeat;
+    background-size: auto;
+}
+.formLogReg{
+    padding-top: 150px;
+}
+.login-error{
+	padding: 0;
+	margin: 0 auto;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+	color: #ff140a;
+}
+.kupsh{
+	margin-left: 13%;
+}
+.message{
+	text-align: center;
+	font-size: 16px;
+	color: #ff140a;
+}
+.containerForm {
+    width: 450px;
+    background-color: rgb(128,128,128, 0.5);
+    text-align: center;
+    box-shadow: 0 -5px 0 #000000;
+    padding-bottom: 20px;
+    border-radius: 0 0 10px 10px;
+    margin: 0 auto;
+}
+.containerForm h1{
+	margin-top: 0;
+	font-size: 25px
+}
+.containerForm img{
+	width: 120px;
+	height: 120px;
+	margin: -60px 0 30px 0;
+	border: 5px solid #1a394f;
+	border-radius: 50%;
+	box-shadow: 0 -5px 0 #000000;
+}
+.active{
+	font-size: 20px;
+	color: #ff140a;
+	text-align: center;
+}
+
+.dws-input input{
+	width: 300px;
+	height: 50px;
+	font-size: 18px;
+	margin-bottom: 25px;
+	border-radius: 4px;
+	padding-left: 10px;
+}
+.dws-submit{
+    padding: 13px 30px;
+    margin: 5px 0 20px 0;
+    font-size: 15px;
+    color: #fff;
+    background-color:#ffb60d;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.dws-submit:hover{
+    transition: all 0.5s;
+    background: #FFF;
+    color: #ff140a;
+}
+.dws-submit:active {
+    background-color: red;
+    color: white;
+}
+
+.dws-submitReg{
+	padding: 13px 30px;
+	margin: 5px 0 20px 0;
+	font-size: 15px;
+	color: #fff;
+	background-color:#ffb60d;
+	cursor: pointer; 
+	border-radius: 5px;
+}
+.dws-submitReg:hover{
+    transition: all 0.5s;
+    background: #FFF;
+    color: #ff140a;
+}
+.dws-submitReg:active {
+    background-color: red;
+    color: white;
+}
+a.button1 {
+	display: inline-block;
+	color: white;
+	font-weight: 700;
+	text-decoration: none;
+	user-select: none;
+	padding: .5em 2em;
+	outline: none;
+	border: 2px solid;
+	border-radius: 1px;
+	transition: 0.2s;
+}
+a.button1:hover {
+    background: rgba(255,255,255,.2);
+}
+a.button1:active {
+    background: white;
+}
+
+

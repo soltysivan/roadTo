@@ -1,0 +1,77 @@
+body {
+    background-color: black;
+}
+.dialog-list {
+    height: 50px;
+    margin-left: 30%;
+    margin-top: -50px;
+}
+.dostup{
+    text-align: center;
+}
+.user-list{
+    background-color: black;
+}
+.user-foto {
+    margin-left: 20%;
+    width: 60px;
+    height: 60px;
+    padding-bottom: 20px;
+}
+.user-message {
+    background-color: #464646;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+.dialog-mes{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+.message-sulk {
+    color: white;
+
+    height: 100px;
+}
+.dialog {
+    margin: 0 7%;
+    flex-flow: column;
+    background-color: #000000;
+    padding: 2%;
+    margin-bottom: 50px;
+}
+.autor-message {
+    color: #ffb60d;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.message-text{
+    color: white;
+    font-size: 18px;
+}
+.fild-text {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    height: 15%;
+}
+.text-message {
+    font-size: 18px;
+    width: 53%;
+    height: 53px;
+}
+.new-mes {
+    margin-top: -20px;
+    margin-left: 50%;
+}
+.button-message {
+    background-color: #ffb60d;
+    width: 19%;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}

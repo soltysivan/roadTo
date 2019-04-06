@@ -1,0 +1,101 @@
+.profile-all{
+    background: url("../img/fon_lenty_radiaciya_opasnost_stena_18526_1920x1080.jpg")no-repeat center top/cover;
+    height: 100vh;
+}
+.profile-update-all{
+    background: #000000 url("../img/fon_lenty_radiaciya_opasnost_stena_18526_1920x1080.jpg")no-repeat center top;
+    padding-bottom: 150px;
+}
+.container_profile {
+    padding-top: 230px;
+    margin: 0 7%;
+}
+.parol-zmina{
+    text-align: center;
+    font-size: 18px;
+}
+.parol-zmina a{
+    color: #FFFFFF;
+}
+.profile_form_update{
+    text-align: left;
+    margin: 0 auto;
+    width: 300px;
+    height: 580px;
+    padding: 3%;
+    border-radius: 20px;
+    background-color: #69686896;
+}
+.profile_form {
+    text-align: left;
+    margin: 0 auto;
+    width: 300px;
+    height: 350px;
+    padding: 3%;
+    border-radius: 20px;
+    background-color: #69686896;
+}
+.avatar_form {
+    margin-top: -70px;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff61;
+    padding-top: 50px;
+    border-radius: 50%;
+}
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: -250px;
+}
+.user p {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+.profile_input input{
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+.profile_name1{
+    text-align: center;
+    font-size: 25px;
+    color: #000000;
+}
+.profile_name{
+    font-size: 25px;
+    color: #ffffff;
+}
+.profile_button {
+    box-sizing: border-box;
+    margin: 50px auto;
+    background: #FFD700;
+    color: #000000;
+    border-radius: 10px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+.profile_button:hover{
+    transition: all 0.5s;
+    color: #ff140a;
+    background:#FFFFFF;
+    box-shadow: 16px 16px 65px rgb(45, 0, 0);
+}
+.profile_button:active {
+    background-color: black;
+    color: white;
+}

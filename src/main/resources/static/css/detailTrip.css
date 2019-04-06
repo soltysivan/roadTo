@@ -1,0 +1,129 @@
+.container-trip_detail{
+    margin: 0 7%;
+    padding-top: 100px;
+}
+.detail-trip {
+    width: 400px;
+    height: 400px;
+    padding: 3%;
+    margin: 0 auto;
+    border: 4px #000000 solid;
+    border-radius: 15%;
+}
+.dostup{
+    text-align: center;
+}
+.detail-trip_date h1{
+    font-size: 30px;
+}
+.trip-detail_img img {
+    float: left;
+    width: 100px;
+    height: 180px;
+}
+.buttonExRed {
+    padding-top: 150px;
+}
+.buttonDelete{
+    float: right;
+    box-sizing: border-box;
+    background: #ff140a	;
+    color: #ffffff;
+    border-radius: 10px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+.buttonDelete:hover{
+    transition: all 0.5s;
+    color: #ff140a;
+    background-color: #000000;
+    box-shadow: 16px 16px 65px rgb(45, 0, 0);
+}
+.buttonUpdate{
+    box-sizing: border-box;
+    background: #FFD700	;
+    color: #000000;
+    border-radius: 10px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+.buttonUpdate:hover{
+    transition: all 0.5s;
+    color: #ffffff;
+    background-color: #ff140a;
+    box-shadow: 16px 16px 65px rgb(45, 0, 0);
+}
+.trip-detail_tovn p {
+    margin-top: 60px;
+    font-size: 40px;
+}
+.trip-detail_price p {
+    float: left;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+.trip-details_submit {
+    float: right;
+    margin-top: 10px;
+}
+
+.trip-detail_button{
+    box-sizing: border-box;
+    background: #FFD700	;
+    color: #000000;
+    border-radius: 10px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+.trip-detail_button:hover{
+    transition: all 0.5s;
+    color: #ff140a;
+    background:#FFFFFF;
+    box-shadow: 16px 16px 65px rgb(45, 0, 0);
+}
+.trip-detail_button:active {
+    background-color: black;
+    color: white;
+}
+.trip-info {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 180px;
+    padding-bottom: 50px;
+}
+.sulka {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+.sulka a{
+    color: red;
+}
+.red{
+    font-size: 16px;
+    color: #ff140a;
+    text-transform: uppercase;
+}

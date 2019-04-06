@@ -1,0 +1,54 @@
+@media screen and (max-width: 1920px) {
+	
+}
+@media screen and (max-width: 1600px) {
+	
+}
+/* 961 - 1368 px */
+@media screen and (max-width: 1368px) {
+
+}
+/*769 - 960*/
+@media screen and (max-width: 960px) {
+
+}
+/*481 - 768*/
+@media screen and (max-width: 768px) {
+    .message-sulk {
+        color: white;
+        height: 100px;
+        text-align: left;
+        float: left;
+        width: 100%;
+    }
+    .dialog-list {
+        height: 50px;
+        margin-left: 80px;
+        margin-top: -50px;
+    }
+    .new-mes {
+        font-size: 18px;
+        font-weight: bold;
+        float: right;
+    }
+}
+/*320 - 480*/
+@media screen and (max-width: 480px) {
+    .message-sulk {
+        color: white;
+        height: 100px;
+        text-align: left;
+        float: left;
+        width: 100%;
+    }
+    .dialog-list {
+        height: 50px;
+        margin-left: 80px;
+        margin-top: -50px;
+    }
+    .new-mes {
+        font-size: 18px;
+        font-weight: bold;
+        float: right;
+    }
+}
