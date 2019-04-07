@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -45,8 +46,9 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/list/user")
-    public String showUserPage(Model model) {
-        List<User> users = userService.findAll();
+    public String showUserPage(@AuthenticationPrincipal User user,
+                               Model model) {
+        List<User> users = userService.findAll().stream().filter(u -> u.getId()!= user.getId()).collect(Collectors.toList());
         model.addAttribute("users", users);
         model.addAttribute("size", users.size());
         return "userList";

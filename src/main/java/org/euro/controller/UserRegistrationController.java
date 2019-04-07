@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class UserRegistrationController {
                            @RequestParam("g-recaptcha-response") String captchaResponce,
                            @Valid User user,
                            BindingResult bindingResult,
-                           Model model){
+                           Model model) throws IOException {
         String url = String.format(CAPTCHA_URL, secret, captchaResponce);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 

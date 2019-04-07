@@ -13,11 +13,27 @@
     .trip-info {
         font-size: 16px;
         text-align: center;
-        margin-top: 210px;
     }
 }
 /*481 - 768*/
 @media screen and (max-width: 768px) {
+    .button-message {
+        background-color: #ffb60d;
+        width: 19%;
+        height: 56px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 10px;
+    }
+    .text-message {
+        font-size: 18px;
+        width: 70%;
+        height: 53px;
+    }
+    .buttonExRed {
+        padding-top: 80px;
+    }
     .container-trip_detail {
         margin: 0;
         padding-top: 100px;
@@ -42,15 +58,9 @@
         border-radius: 0 0 10px 10px;
         margin: 0 auto;
     }
-    .trip-detail_img img {
-        float: left;
-        margin-left: 0;
-        width: 100px;
-        height: 180px;
-    }
     .trip-detail_price p {
         float: left;
-        font-size: 40px;
+        font-size: 35px;
         margin-top: 0;
     }
     .trip-details_submit {

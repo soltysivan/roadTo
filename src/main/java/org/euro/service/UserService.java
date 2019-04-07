@@ -7,9 +7,7 @@ import org.euro.dao.repository.FileDBRepository;
 import org.euro.dao.repository.TripRepository;
 import org.euro.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,14 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Value("myPort.value")
-    public String portValue;
-
     @Autowired
     public DialogRepository dialogRepository;
-
-    @Autowired
-    public MailSender mailSender;
 
     @Autowired
     public PasswordEncoder passwordEncoder;
@@ -71,7 +63,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean addUser(User user) {
+    public boolean addUser(User user) throws IOException {
         User userFromDb = userRepository.findByUsername(user.getUsername());
         if (userFromDb != null){
             return false;
@@ -82,23 +74,18 @@ public class UserService implements UserDetailsService {
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+        String message = String.format("Вітаю, %s! \n" +
+                        "Дякуємо Вам за вашу довіру нашому сервісу," +
+                        "комфортні перевезення з найдійними перевізниками. \n" +
+                        "Будь-ласка відвідайте наступне посилання," +
+                        " для повної активаціїї вашого акаунта " +
+                        ": http://%s/acti/%s",
+                user.getFirstName(), "longwayeuro.herokuapp.com",user.getActivationCode());
 
-        sendMessage(user);
+
         return true;
     }
 
-    private void sendMessage(User user) {
-        if(!StringUtils.isEmpty(user.getEmail())){
-            String message = String.format("Вітаю, %s! \n" +
-                    "Дякуємо Вам за вашу довіру нашому сервісу," +
-                    "комфортні перевезення з найдійними перевізниками. \n" +
-                            "Будь-ласка відвідайте наступне посилання," +
-                    " для повної активаціїї вашого акаунта " +
-                    ": http://%s/acti/%s",
-                    user.getFirstName(), portValue,user.getActivationCode());
-            mailSender.send(user.getEmail(), "Код активації", message);
-        }
-    }
 
     public boolean activateUser(String code){
         User user = userRepository.findByActivationCode(code);
@@ -205,7 +192,13 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
         if(isEmailChanged){
-            sendMessage(user);
+            String message = String.format("Вітаю, %s! \n" +
+                            "Дякуємо Вам за вашу довіру нашому сервісу," +
+                            "комфортні перевезення з найдійними перевізниками. \n" +
+                            "Будь-ласка відвідайте наступне посилання," +
+                            " для повної активаціїї вашого акаунта " +
+                            ": http://%s/acti/%s",
+                    user.getFirstName(), "longwayeuro.herokuapp.com",user.getActivationCode());
         }
     }
 

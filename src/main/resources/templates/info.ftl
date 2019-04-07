@@ -84,8 +84,21 @@
         </#list>
     </#if>
     </div>
-
-
+<div class="textinfotel">
+    <span>
+        Підтримка в будь якій країні
+        <br>
+        <br>
+        <div class="phone">
+            <p><#list telephone as foun>
+                ${foun.text}<br>
+                </#list>
+            </p>
+        </div>
+    </span>
+</div>
+<br>
+<br>
 
 
 <div class="textinfo">
@@ -101,21 +114,8 @@
         уточнити умови, для вашого максимального комфорту.
     </span>
 </div>
-<br>
-<br>
-<div class="textinfotel">
-    <span>
-        Підтримка в будь якій країні
-        <br>
-        <br>
-        <div class="phone">
-            <p><#list telephone as foun>
-                ${foun.text}<br>
-                </#list>
-            </p>
-        </div>
-    </span>
-</div>
+
+
 <footer>
     <div class="container_footer">
         <div class="logo_footer">
