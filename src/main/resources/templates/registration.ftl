@@ -82,7 +82,7 @@
                     ${usernameError}
                 </div>
                 </#if>
-                <input class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${user.username}</#if>" type="text" name="username" placeholder="Введіть імя">
+                <input class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${user.username}</#if>" type="text" name="username" placeholder="Введіть Login">
             </div>
             <div class="dws-input">
 			<#if emailError??>

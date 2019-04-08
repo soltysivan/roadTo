@@ -327,6 +327,8 @@ body{
 }
 .container_2_item h3{
 	font-size: 24px;
+	margin: 0;
+	padding: 0;
 }
 .container_2_item p{
 	font-size: 18px;
@@ -408,6 +410,9 @@ footer{
 .email{
 	font-size: 18px;
 	color: #ffffff;
+}
+.footik{
+	margin-top: 200px;
 }
 
 

@@ -1,12 +1,15 @@
 package org.euro.controller;
 
 
+import org.euro.dao.entity.City;
 import org.euro.dao.entity.Tel;
 import org.euro.dao.entity.Trip;
+import org.euro.service.CityService;
 import org.euro.service.TelService;
 import org.euro.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +18,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class TripController {
+
+    @Autowired
+    public CityService cityService;
 
     @Autowired
     public TelService telService;
@@ -53,11 +61,28 @@ public class TripController {
             return "createTrip";
         }
         tripService.save(trip);
-        return "redirect:/trip/list";
+        model.addAttribute("id", trip.getId());
+        return "createCityTrip";
     }
+    @PostMapping("/city")
+    public String addCity(@RequestParam Long id,
+                          @RequestParam String city,
+                          @RequestParam String sss,
+                          Model model){
+        cityService.save(city, sss, id);
+        model.addAttribute("id", id);
+        return "createCityTrip";
+    }
+
     @GetMapping("/details/{Id}")
     public String showDetails(@PathVariable("Id") Long tripId, Model model){
-        model.addAttribute("trip", tripService.findById(tripId));
+        Trip trip = tripService.findById(tripId);
+        if (trip.getCity()!= null){
+            List<City> cities = cityService.findAll().stream().filter(city -> city.getTrip().equals(trip)).collect(Collectors.toList());
+            model.addAttribute("citys", cities);
+        }
+
+        model.addAttribute("trip",trip );
         return "detailsTrip";
     }
     @GetMapping("/delete/trip/{id}")

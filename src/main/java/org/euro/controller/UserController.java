@@ -110,7 +110,8 @@ public class UserController {
     @GetMapping("/trip/user/{id}")
     public String showTripUsers (@PathVariable ("id") Long id, Model model){
         Trip tripUser = tripService.findById(id);
-        model.addAttribute("users", tripUser.getUsers() );
+        List<User> users = tripUser.getUsers();
+        model.addAttribute("users", users );
         return "AdminTripUsersList";
     }
 

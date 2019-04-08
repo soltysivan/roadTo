@@ -4,7 +4,7 @@
 }
 .detail-trip {
     width: 400px;
-    height: 400px;
+    height: 500px;
     padding: 3%;
     margin: 0 auto;
     border: 4px #000000 solid;
@@ -69,7 +69,22 @@
 }
 .trip-detail_tovn p {
     margin-top: 60px;
-    font-size: 40px;
+    font-size: 30px;
+}
+.city {
+    font-size: 16px;
+    text-align: center;
+}
+.trip-detail_price {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    color: #1f8400;
+}
+.promi {
+    font-size: 22px;
+    text-align: center;
+    color: #ff140a;
 }
 .trip-detail_price p {
     float: left;

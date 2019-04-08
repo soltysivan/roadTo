@@ -1,6 +1,8 @@
 package org.euro.dao.entity;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,6 +40,7 @@ public class User implements UserDetails{
 
     private int newMes;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_trips",
                 joinColumns = @JoinColumn(name = "user_id"),

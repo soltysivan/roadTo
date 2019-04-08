@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
-    <title>Trip</title>
+	<title>Trip</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
-    <link rel="stylesheet" href="/static/css/detailTrip.css">
-    <link rel="stylesheet" href="/static/css/mediaForm.css">
 </head>
 <body>
-<body>
-
 <div class="fix-menu">
     <div class="burger-menu">
 
@@ -53,44 +50,24 @@
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/script.js"></script>
 
-<div class="buttonExRed">
-<#if isAdmin>
-    <a href="/trip/${trip.id}" class="buttonUpdate">Редагувати</a>
-    <a href="/delete/trip/${trip.id}" class="buttonDelete">Видалити</a>
-</#if>
-</div>
-
-    <div class="container-trip_detail">
-        <div class="sulka"><a href="/dialog/1">зв'язатись із водієм</a></div>
-        <div class="err">${mes?ifExists}</div>
-        <form class="detail-trip" action="/trip/accept/${trip.id}" method="post" enctype="multipart/form-data">
-         <div class="detail-trip_date">
-             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <h1> ${trip.date}</h1>
-         </div>
-            <div class="trip-detail_price">${trip.price}</div>
-            <div class="trip-detail_img">
-            <img  src="/static/img/road.png" >
+<div class="formLogReg">
+    <div class="containerForm">
+        <form name="trip" action="/city" method="POST" enctype="multipart/form-data">
+            <img src="../static/img/Регистрация-чп-бровары.png">
+            <h1 class="loginTitle">Проміжні пункти</h1>
+            <input type="hidden" name="id" value="${id}">
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+            <div class="dws-input">
+                <input type="text" name="city" placeholder="Введіть місто">
             </div>
-            <div class="trip-detail_tovn">
-          <p>${trip.beginning} <br> <br> <br> ${trip.finish}</p>
-                <#if citys??>
-                <div class="promi">Проміжні пункти</div>
-              <#list citys as city>
-                  <div class="city">
-                      ${city.name} - ${city.sss}
-                  </div>
-              </#list>
+            <div class="dws-input">
+                <input type="text" name="sss" placeholder="Ціна">
             </div>
-            </#if>
-            <div class="trip-details_submit">
-              <input class="trip-detail_button" type="submit"  value="Прийняти">
-
-            </div>
-            <div class="trip-info">
-                <p>Для бронювання місця, натисніть кнопку <p class="red">прийняти</p> </p>
-            </div>
+            <br/>
+            <input class="dws-submitReg" type="submit"  value="Додати">
         </form>
+        <a href="/details/${id}">Завершити</a>
     </div>
+</div>
 </body>
 </html>

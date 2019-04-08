@@ -4,15 +4,21 @@ package org.euro.service;
 import org.euro.dao.entity.Trip;
 import org.euro.dao.entity.User;
 import org.euro.dao.repository.TripRepository;
+import org.euro.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Service
 public class TripService {
+    @Autowired
+    public UserRepository userRepository;
+
     @Autowired
     public TripRepository tripRepository;
 
@@ -32,18 +38,28 @@ public class TripService {
     }
 
     public List<Trip> findAllTripVSUser() {
-        List<Trip> tripsUser = (List<Trip>) tripRepository.findAll();
-        List<Trip> filter = new ArrayList<>();
-
-        for (Trip trip : tripsUser){
-            if (!trip.getUsers().isEmpty()){
-                filter.add(trip);
-            }
-        }
-        return filter;
+        List<Trip> tripsUser = tripRepository.findAll().stream().filter(trip -> trip.getUsers()!=null).collect(Collectors.toList());
+        return tripsUser;
     }
 
     public void deleteTripById(Long id) {
+        Trip trip = tripRepository.findById(id).orElse(null);
+        List<User> users = trip.getUsers();
+
+        Iterator <User> iterator = users.iterator();
+        while (iterator.hasNext()){
+            User user = iterator.next();
+            List<Trip> trips = user.getTrips();
+            Iterator <Trip> tripIterator = trips.iterator();
+            while (tripIterator.hasNext()){
+                Trip trip1 = tripIterator.next();
+                if (trip1.getId().equals(id)){
+                    tripIterator.remove();
+                }
+            }
+        }
+        trip.getUsers().clear();
+        tripRepository.save(trip);
         tripRepository.deleteById(id);
     }
 

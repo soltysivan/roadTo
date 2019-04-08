@@ -79,6 +79,7 @@
 </#list>
 
 </div>
+<div class="footik">.</div>
 <footer>
     <div class="container_footer">
         <div class="phone">

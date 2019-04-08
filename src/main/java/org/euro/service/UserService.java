@@ -51,15 +51,14 @@ public class UserService implements UserDetailsService {
         Trip trip = tripRepository.findById(id).orElseThrow(()->new RuntimeException("Trip not found"));
         User userDB = userRepository.findById(user.getId()).orElseThrow(()->new RuntimeException("User not found"));
         List<User> users = trip.getUsers();
-
         for (User u: users)
-        if (u.equals(userDB)){
+        if (u.getId().equals(userDB.getId())){
             return false;
         }
         trip.getUsers().add(userDB);
-        user.getTrips().add(trip);
+        userDB.getTrips().add(trip);
         tripRepository.save(trip);
-        userRepository.save(user);
+        userRepository.save(userDB);
         return true;
     }
 

@@ -47,23 +47,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--mail-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-mail</artifactId>-->
-        <!--</dependency>-->
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java &ndash;&gt;-->
+        <!--&lt;!&ndash;FLYWAY міграція бд&ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>com.sendgrid</groupId>-->
-            <!--<artifactId>sendgrid-java</artifactId>-->
-            <!--<version>4.1.2</version>-->
-        <!--</dependency>-->
-
-        <!--Session-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.session</groupId>-->
-            <!--<artifactId>spring-session-jdbc</artifactId>-->
+        <!--<groupId>org.flywaydb</groupId>-->
+        <!--<artifactId>flyway-core</artifactId>-->
         <!--</dependency>-->
 
 
@@ -78,6 +66,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.flywaydb</groupId>-->
+                <!--<artifactId>flyway-maven-plugin</artifactId>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 

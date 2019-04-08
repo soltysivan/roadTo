@@ -86,7 +86,7 @@
     </div>
 <div class="textinfotel">
     <span>
-        Підтримка в будь якій країні
+        Підтримка в будь-якій країні
         <br>
         <br>
         <div class="phone">
