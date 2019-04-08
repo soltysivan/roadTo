@@ -5,10 +5,10 @@
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
 	<title>Trip</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/formStyle.css">
+    <link rel="stylesheet" href="/static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
-    <link rel="stylesheet" href="/static/css/city.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
+    <link rel="stylesheet" href="/static/css/city.css">
 </head>
 <body>
 <div class="fix-menu">
@@ -53,46 +53,17 @@
 
 <div class="formLogReg">
     <div class="containerForm">
-        <form name="trip" role="form" action="/trip/edit" method="POST" enctype="multipart/form-data">
-            <img src="../static/img/Регистрация-чп-бровары.png">
+        <form name="trip" role="form" action="/city/update/${tripId}/${city.id}" method="POST" enctype="multipart/form-data">
             <h1 class="loginTitle">Редагування</h1>
                 <div class="dws-input">
-                <#if beginningError??>
-                <div class="invalid-input">
-                    ${beginningError}
-                </div>
-                </#if>
-                    <input type="hidden" name="id" value="${trip.id}">
-                    <input class="${(beginningError??)?string('invalid', '')}" type="text" name="beginning" value="${trip.beginning}" placeholder="Звідки">
-                </div>
-                <div class="dws-input">
-                <#if finishError??>
-                <div class="invalid-input">
-                    ${finishError}
-                </div>
-                </#if>
-                    <input class="${(finishError??)?string('invalid', '')}" type="text" name="finish" value="${trip.finish}" placeholder="Куди">
-                </div>
-                <div class="dws-input">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <#if priceError??>
-                <div class="invalid-input">
-                    ${priceError}
+                    <input type="text" name="name" value="${city.name}" placeholder="Місто">
                 </div>
-                </#if>
-                    <input class="${(priceError??)?string('invalid', '')}" type="text" name="price" value="${trip.price}" placeholder="Ціна">
-                </div>
-                <div class="dws-input">
-                <#if dateError??>
-                <div class="invalid-input">
-                    ${dateError}
-                </div>
-                </#if>
-                    <input class="${(dateError??)?string('invalid', '')}" type="text" name="date" value="${trip.date}" placeholder="Дата">
-                </div>
+            <div class="dws-input">
+                <input type="text" name="sss" value="${city.sss}" placeholder="Ціна">
+            </div>
             <br/>
             <input class="dws-submitReg" type="submit"  value="Підтвердити">
-            <a class="cityA" href="/city/red/${trip.id}">Редагувати проміжні</a>
         </form>
     </div>
 </div>

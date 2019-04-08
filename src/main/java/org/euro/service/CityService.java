@@ -19,7 +19,7 @@ public class CityService {
     @Autowired
     public CityRepository cityRepository;
 
-    public void save(String city, String sss,  Long id) {
+    public void saveCities(String city, String sss, Long id) {
         Trip trip = tripRepository.findById(id).orElse(null);
         List<City> cities = trip.getCity();
         City city1 = new City();
@@ -34,5 +34,13 @@ public class CityService {
 
     public List<City> findAll() {
          return cityRepository.findAll();
+    }
+
+    public City findById(Long id) {
+        return cityRepository.findById(id).orElse(null);
+    }
+
+    public void save(City city) {
+        cityRepository.save(city);
     }
 }

@@ -88,9 +88,8 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/trip/adm")
     public String showAdminTripPage(Model model) {
-        List<User> users = userService.finAllUserVSTrip();
         List<Trip> trips = tripService.findAllTripVSUser();
-        model.addAttribute("users", users);
+
         model.addAttribute("trips", trips);
         return "adminTrip";
     }
@@ -107,12 +106,22 @@ public class UserController {
             return "redirect:/trip/list";
         }
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/trip/user/{id}")
-    public String showTripUsers (@PathVariable ("id") Long id, Model model){
+    public String showTripUsers (@PathVariable ("id") Long id,
+                                 Model model){
         Trip tripUser = tripService.findById(id);
         List<User> users = tripUser.getUsers();
+        model.addAttribute("tripId", id);
         model.addAttribute("users", users );
         return "AdminTripUsersList";
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/del/trip/{tripId}/{userId}")
+    public String deleteUser(@PathVariable Long userId,
+                             @PathVariable Long tripId){
+        userService.deleteUserFromTrip(userId, tripId);
+        return "return:/trip/user/" + tripId ;
     }
 
     @GetMapping("/profile")

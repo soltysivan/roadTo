@@ -56,12 +56,18 @@
         <th>Логін</th>
         <th>Телефон</th>
         <th>Емаіл</th>
+        <th></th>
     </tr>
 <#list users as user>
     <tr>
         <td>${user.username}</td>
         <td>${user.telephone}</td>
         <td>${user.email}</td>
+        <td>
+            <form action="/del/trip/${tripId}/${user.id}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <input type="submit" value="Видалити">
+            </form></td>
     </tr>
 </#list>
 </table>

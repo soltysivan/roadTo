@@ -25,8 +25,7 @@ public class Trip implements Serializable {
     private String price;
     @NotBlank(message = "Поле не може бути пустим")
     private String date;
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToMany(mappedBy = "trips",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "trips",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<User> users;
 
     public Trip() {

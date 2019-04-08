@@ -40,8 +40,8 @@ public class User implements UserDetails{
 
     private int newMes;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_trips",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "trip_id"))

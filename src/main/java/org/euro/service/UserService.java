@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,9 +53,9 @@ public class UserService implements UserDetailsService {
         User userDB = userRepository.findById(user.getId()).orElseThrow(()->new RuntimeException("User not found"));
         List<User> users = trip.getUsers();
         for (User u: users)
-        if (u.getId().equals(userDB.getId())){
-            return false;
-        }
+            if (u.getId().equals(userDB.getId())){
+                return false;
+            }
         trip.getUsers().add(userDB);
         userDB.getTrips().add(trip);
         tripRepository.save(trip);
@@ -224,5 +225,16 @@ public class UserService implements UserDetailsService {
     public void updateUserPassword(String newPassword, User user) {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
+    }
+
+    public void deleteUserFromTrip(Long userId, Long tripId) {
+        User user = userRepository.findById(userId).orElse(null);
+        List<Trip> trips = user.getTrips();
+        trips.removeIf(trip -> trip.getId().equals(tripId));
+        Trip trip = tripRepository.findById(tripId).orElse(null);
+        List<User> users = trip.getUsers();
+        users.removeIf(user1 -> user.getId().equals(userId));
+        userRepository.save(user);
+        tripRepository.save(trip);
     }
 }
