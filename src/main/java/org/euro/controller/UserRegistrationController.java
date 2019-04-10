@@ -39,21 +39,13 @@ public class UserRegistrationController {
     @PostMapping("/registration")
     public String saveUser(@RequestParam("password2") String passwordConfirm,
                            @RequestParam String password,
-                           @RequestParam("g-recaptcha-response") String captchaResponce,
                            @RequestParam String username,
                            @Valid User user,
                            BindingResult bindingResult,
                            Model model) throws IOException {
-        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-
-        if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Підтвердіть що ви не робот");
-        }
-
         boolean isConfirm =StringUtils.isEmpty(passwordConfirm);
         boolean isConfirm2 =StringUtils.isEmpty(password);
-        if (isConfirm || bindingResult.hasErrors() || !response.isSuccess()){
+        if (isConfirm || bindingResult.hasErrors()){
             Map<String, String> errors = UtilsController.getErrors(bindingResult);
             model.mergeAttributes(errors);
             model.addAttribute("username", username);
@@ -75,7 +67,8 @@ public class UserRegistrationController {
             return "registration";
         }
         userService.addUser(user);
-        return "redirect:/login";
+        userService.loadUserByUsername(username);
+        return "redirect:/";
     }
 
     @GetMapping("registration/tel")
@@ -84,17 +77,20 @@ public class UserRegistrationController {
     }
 
     @PostMapping("registration/tel")
-    public String sendSmS(@RequestParam String username, Model model){
-        Random random = new Random();
-        int kode = random.nextInt(9999);
-        String kodeString = String.valueOf(kode);
-        if (!userService.sendSMSToUser(username , kodeString)){
+    public String sendSmS(@RequestParam String username,
+                          @RequestParam("g-recaptcha-response") String captchaResponce,
+                          Model model){
+        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
+        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+        if (!userService.findByUsername(username)){
             model.addAttribute("usernameError","Користувач з таким телефон вже існує!");
             return "registrationTel";
         }
-        model.addAttribute("kode", kodeString);
+        if (!response.isSuccess()) {
+            model.addAttribute("captchaError", "Підтвердіть що ви не робот");
+        }
         model.addAttribute("username", username);
-        return "registrationTelActivate";
+        return "registration";
     }
     @PostMapping("/acti/again")
     public String newCode(@RequestParam String username, Model model){

@@ -76,7 +76,6 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </div>
 
-
 			<br/>
 			<input class="dws-submitReg" type="submit"  value="Підтвердити">
 		</form>

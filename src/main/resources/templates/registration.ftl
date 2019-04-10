@@ -86,18 +86,10 @@
             </#if>
                 <input class="${(password2Error??)?string('invalid', '')}" type="password" name="password2" placeholder="Підтвердіть пароль">
             </div>
-            <div class="kupsh">
-                <#if captchaError??>
-                    <div class="invalid-input">
-                        ${captchaError}
-                    </div>
-                </#if>
-            <div class="g-recaptcha" data-sitekey="6LctgpwUAAAAACwBapdmIuMq4bfXMFURUaOPtblM"></div>
-            </div>
 			<br/>
 			<input class="dws-submitReg" type="submit"  value="Завершити реєстрацію">
-		</form>
+        </form>
+    </div>
 	</div>
-</div>
 </body>
 </html>

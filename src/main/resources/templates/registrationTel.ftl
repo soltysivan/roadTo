@@ -71,11 +71,18 @@
 		<div class="dws-input">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </div>
+            <div class="kupsh">
+                <#if captchaError??>
+                    <div class="invalid-input">
+                        ${captchaError}
+                    </div>
+                </#if>
+                <div class="g-recaptcha" data-sitekey="6LctgpwUAAAAACwBapdmIuMq4bfXMFURUaOPtblM"></div>
+            </div>
 			<br/>
-			<input class="dws-submitReg" type="submit"  value="Надіслати СМС">
+			<input class="dws-submitReg" type="submit"  value="Підтвердити">
 		</form>
 	</div>
-</div>
 </div>
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/script.js"></script>
