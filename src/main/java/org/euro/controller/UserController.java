@@ -48,7 +48,8 @@ public class UserController {
     @GetMapping("/list/user")
     public String showUserPage(@AuthenticationPrincipal User user,
                                Model model) {
-        List<User> users = userService.findAll().stream().filter(u -> u.getId()!= user.getId()).collect(Collectors.toList());
+        User user1 = userService.findById(user.getId());
+        List<User> users = userService.findAll().stream().filter(u -> !u.getUsername().equals(user1.getUsername())).collect(Collectors.toList());
         model.addAttribute("users", users);
         model.addAttribute("size", users.size());
         return "userList";
