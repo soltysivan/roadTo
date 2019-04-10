@@ -92,7 +92,7 @@
 <script src="/static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
-        $("#phone").mask("+38(099) 999-99-99");
+        $("#phone").mask("+38(099)999-99-99");
     });
 </script>
 </body>
