@@ -22,7 +22,7 @@ public class CommandLineAppStartupRunner  implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user = userRepository.findByUsername("+38(099)999-99-99");
+        User user = userRepository.findByUsername("+380978026341");
         if (user == null){
             User admin = new User();
             admin.setActivationCode(null);
@@ -32,9 +32,9 @@ public class CommandLineAppStartupRunner  implements CommandLineRunner {
             admin.setFirstLastName("Vasyl Lavriv");
             admin.setNewMes(0);
             admin.setPassword(passwordEncoder.encode("1111"));
-            admin.setUsername("+38(099)999-99-99");
+            admin.setUsername("+380978026341");
             userRepository.save(admin);
-            User user1 = userRepository.findByUsername("+38(099)999-99-99");
+            User user1 = userRepository.findByUsername("+380978026341");
             user1.getRoles().add(Role.ADMIN);
             userRepository.save(user1);
         }

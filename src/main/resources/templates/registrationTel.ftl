@@ -66,7 +66,7 @@
                     ${usernameError}
                 </div>
                 </#if>
-                <input id="phone" class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${username?ifExists}</#if>" type="text" name="username" placeholder="+380999999999">
+                <input class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${username?ifExists}</#if>" list="defaultTels" type="text" name="username" placeholder="+380999999999">
             </div>
 		<div class="dws-input">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -80,10 +80,11 @@
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/script.js"></script>
 <script src="/static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function() {
-        $("#phone").mask("+38(099)999-99-99");
-    });
-</script>
+<datalist id="defaultTels">
+    <option >
+    <option value="+3">
+    <option value="+7">
+    <option value="+4">
+</datalist>
 </body>
 </html>

@@ -65,7 +65,7 @@
                     ${usernameError}
                 </div>
             </#if>
-			<input  id="phone" class="${(usernameError??)?string('invalid', '')}" type="text" name="username" placeholder="Введіть телефон">
+			<input class="${(usernameError??)?string('invalid', '')}" list="defaultTels" type="tel" name="username" placeholder="Введіть телефон">
 		</div>
             <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
             <div class="login-error">
@@ -90,10 +90,12 @@
 	</div>
 </div>
 <script src="/static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function() {
-        $("#phone").mask("+38(099)999-99-99");
-    });
-</script>
+
+<datalist id="defaultTels">
+    <option >
+    <option value="+3">
+    <option value="+7">
+    <option value="+4">
+</datalist>
 </body>
 </html>
