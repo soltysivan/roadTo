@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
-    <title>Profile</title>
+	<title>Registration</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
-    <link rel="stylesheet" href="/static/css/profileStyle.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
-    <link rel="stylesheet" href="/static/css/mediaProfile.css">
+    <link rel="stylesheet" href="/static/css/mediaForm.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-<div class="profile-all">
+<body>
+
 <div class="fix-menu">
     <div class="burger-menu">
 
@@ -49,25 +51,39 @@
     </div>
 </div>
 
-    <script src="/static/js/jquery-3.3.1.min.js"></script>
+
+
+<div class="formLogReg">
+	<div class="containerForm">
+		<form name="user" role="form" action="/registration/tel" method="POST" enctype="multipart/form-data">
+			<img src="/static/img/reg.png">
+			<h1 class="loginTitle">Реєстрація</h1>
+            <div class="message">${message!}</div>
+            <div class="textsms">Введіть номер телефону</div>
+            <div class="dws-input">
+                <#if usernameError??>
+                <div class="invalid-input">
+                    ${usernameError}
+                </div>
+                </#if>
+                <input id="phone" class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${username?ifExists}</#if>" type="text" name="username" placeholder="+380999999999">
+            </div>
+		<div class="dws-input">
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+            </div>
+			<br/>
+			<input class="dws-submitReg" type="submit"  value="Надіслати СМС">
+		</form>
+	</div>
+</div>
+</div>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/script.js"></script>
-<div class="container_profile">
-    <div class="profile_form">
-        <form name="user"  enctype="multipart/form-data">
-            <div class="avatar_form">
-                <img class="avatar" <#if avatar??>src="data:image/png;base64,${avatar!}"<#else> src="/static/img/Programmyi-dlya-sozdaniya-avatarok.png" </#if>>
-            </div>
-            <div class="user">
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <p>Користувач: ${firstLastName}</p>
-            </div>
-            <div class="user">
-                <p>Тел: ${username}</p>
-            </div>
-            <a class="profile_button" href="/profile/update">Редагувати</a>
-        </form>
-    </div>
-</div>
-</div>
+<script src="/static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $("#phone").mask("+38(099) 999-99-99");
+    });
+</script>
 </body>
 </html>

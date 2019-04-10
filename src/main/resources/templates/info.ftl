@@ -27,7 +27,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>

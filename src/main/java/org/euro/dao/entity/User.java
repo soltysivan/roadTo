@@ -21,20 +21,13 @@ public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @NotBlank(message = "Імя не може бути пустим")
-    private String firstName;
-    @NotBlank(message = "Фамілія не може бути пустою")
-    private String lastName;
-    @NotBlank(message = "Логін не може бути пустим")
-    private String username;
-
-    private String password;
-    @Email(message = "Некоректний Email")
-    @NotBlank(message = "Email не може бути пустим")
-    private String email;
-    private String activationCode;
+    @NotBlank(message = "Імя Фамілія не може бути пустим")
+    private String firstLastName;
     @NotBlank(message = "Телефон не може бути пустим")
-    private String telephone;
+    private String username;
+    @NotBlank(message = "Пароль не може бути пустим")
+    private String password;
+    private String activationCode;
     private boolean active;
     private Long avatar;
 
@@ -133,14 +126,6 @@ public class User implements UserDetails{
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getActivationCode() {
         return activationCode;
     }
@@ -163,14 +148,6 @@ public class User implements UserDetails{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
     }
 
     public List<Message> getMessages() {
@@ -205,19 +182,11 @@ public class User implements UserDetails{
         this.newMes = newMes;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstLastName() {
+        return firstLastName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstLastName(String firstLastName) {
+        this.firstLastName = firstLastName;
     }
 }

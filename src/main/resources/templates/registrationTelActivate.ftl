@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
-    <title>Profile</title>
+	<title>Registration</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
-    <link rel="stylesheet" href="/static/css/profileStyle.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
-    <link rel="stylesheet" href="/static/css/mediaProfile.css">
+    <link rel="stylesheet" href="/static/css/mediaForm.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-<div class="profile-all">
+<body>
+
 <div class="fix-menu">
     <div class="burger-menu">
 
@@ -49,25 +51,44 @@
     </div>
 </div>
 
-    <script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/script.js"></script>
-<div class="container_profile">
-    <div class="profile_form">
-        <form name="user"  enctype="multipart/form-data">
-            <div class="avatar_form">
-                <img class="avatar" <#if avatar??>src="data:image/png;base64,${avatar!}"<#else> src="/static/img/Programmyi-dlya-sozdaniya-avatarok.png" </#if>>
+
+<div class="formLogReg">
+	<div class="containerForm">
+		<form name="user" role="form" action="/regisrtation/tel/acti" method="POST" enctype="multipart/form-data">
+			<img src="/static/img/reg.png">
+			<h1 class="loginTitle">Реєстрація</h1>
+            <div class="message">${message!}</div>
+            <input type="hidden" name="username" value="${username?ifExists}">
+            <input type="hidden" name="kode" value="${kode?ifExists}">
+            <div class="textsms">Вам відправили SMS з кодом</div>
+            <div class="textsms2">Введіть код в поле</div>
+            <div class="dws-input">
+                <#if kodeInputError??>
+                <div class="invalid-input">
+                    ${kodeInputError}
+                </div>
+                </#if>
+                <input class="${(kodeInputError??)?string('invalid', '')}" type="text" name="kodeInput" placeholder="Введіть код">
             </div>
-            <div class="user">
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <p>Користувач: ${firstLastName}</p>
+		<div class="dws-input">
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             </div>
-            <div class="user">
-                <p>Тел: ${username}</p>
-            </div>
-            <a class="profile_button" href="/profile/update">Редагувати</a>
+
+
+			<br/>
+			<input class="dws-submitReg" type="submit"  value="Підтвердити">
+		</form>
+        <#if kodeInputError??>
+        <form action="/acti/again" method="post">
+            <input type="hidden" name="username" value="${username?ifExists}">
+            <input type="hidden" name="kode" value="${kode?ifExists}">
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+            <input class="novesms" type="submit" value="Отримати новий код">
         </form>
-    </div>
-</div>
+        </#if>
+	</div>
 </div>
 </body>
 </html>

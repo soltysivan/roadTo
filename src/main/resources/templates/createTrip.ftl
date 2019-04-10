@@ -5,7 +5,7 @@
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
 	<title>Trip</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/formStyle.css">
+    <link rel="stylesheet" href="/static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
 </head>
@@ -27,7 +27,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -53,7 +53,7 @@
 <div class="formLogReg">
     <div class="containerForm">
         <form name="trip" role="form" action="/trip/save" method="POST" enctype="multipart/form-data">
-            <img src="../static/img/Регистрация-чп-бровары.png">
+            <img src="/static/img/doroga3.jpg">
             <h1 class="loginTitle">Нова поїздка</h1>
             <div class="dws-input">
                 <#if beginningError??>

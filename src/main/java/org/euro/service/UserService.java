@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
+    @Autowired
+    public SendSMS sendSMS;
 
     @Autowired
     public DialogRepository dialogRepository;
@@ -63,27 +65,13 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean addUser(User user) throws IOException {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-        if (userFromDb != null){
-            return false;
-        }
-
+    public void addUser(User user) throws IOException {
         user.setActive(true);
+        user.setUsername(user.getUsername());
         user.setRoles(Collections.singleton(Role.USER));
-        user.setActivationCode(UUID.randomUUID().toString());
+        user.setActivationCode(null);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        String message = String.format("Вітаю, %s! \n" +
-                        "Дякуємо Вам за вашу довіру нашому сервісу," +
-                        "комфортні перевезення з найдійними перевізниками. \n" +
-                        "Будь-ласка відвідайте наступне посилання," +
-                        " для повної активаціїї вашого акаунта " +
-                        ": http://%s/acti/%s",
-                user.getFirstName(), "longwayeuro.herokuapp.com",user.getActivationCode());
-
-
-        return true;
     }
 
 
@@ -117,11 +105,9 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(userId);
     }
 
-    public void saveUser(Long userId, String username, String email, String telephone, Map<String, String> form) {
+    public void saveUser(Long userId, String username, Map<String, String> form) {
         User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));
         user.setUsername(username);
-        user.setEmail(email);
-        user.setTelephone(telephone);
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
                 .collect(Collectors.toSet());
@@ -149,36 +135,22 @@ public class UserService implements UserDetailsService {
         return filter;
     }
 
-    public void updateProfile(User user1,String firstName, String lastName, String email, String telephone, MultipartFile file) throws IOException {
+    public void updateProfile(User user1, String username,String firstLastName, MultipartFile file) throws IOException {
         User user = userRepository.findById(user1.getId()).orElseThrow(()->new RuntimeException("User not found"));
-        String userEmail = user.getEmail();
-        String userTelephone = user.getTelephone();
-        String userFirstName = user.getFirstName();
-        String userLastName = user.getLastName();
+        String userFirstName = user.getFirstLastName();
 
-        boolean isFirstNameChanged = (firstName != null && !firstName.equals(userFirstName) ||
-                (userFirstName != null && !userFirstName.equals(firstName)));
+        boolean isFirstNameChanged = (firstLastName != null && !firstLastName.equals(userFirstName) ||
+                (userFirstName != null && !userFirstName.equals(firstLastName)));
         if (isFirstNameChanged){
-            user.setFirstName(firstName);
+            user.setFirstLastName(firstLastName);
         }
-        boolean isLastNameChanged = (lastName != null && !lastName.equals(userLastName) ||
-                (userLastName != null && !userLastName.equals(lastName)));
-        if (isLastNameChanged){
-            user.setLastName(lastName);
-        }
-        boolean isEmailChanged = (email != null && !email.equals(userEmail) ||
-                (userEmail != null && !userEmail.equals(email)));
+               boolean isEmailChanged = (username != null && !username.equals(username) ||
+                (username != null && !username.equals(username)));
         if (isEmailChanged){
-            user.setEmail(email);
-            if(!StringUtils.isEmpty(email)){
+            user.setUsername(username);
+            if(!StringUtils.isEmpty(username)){
                 user.setActivationCode(UUID.randomUUID().toString());
             }
-        }
-
-        boolean isTelephoneChanged = (telephone != null && !telephone.equals(userTelephone) ||
-                (userTelephone != null && !userTelephone.equals(telephone)));
-        if (isTelephoneChanged){
-            user.setTelephone(telephone);
         }
         if(!file.isEmpty()){
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
@@ -189,17 +161,7 @@ public class UserService implements UserDetailsService {
             }
             user.setAvatar(fileDB.getId());
         }
-
         userRepository.save(user);
-        if(isEmailChanged){
-            String message = String.format("Вітаю, %s! \n" +
-                            "Дякуємо Вам за вашу довіру нашому сервісу," +
-                            "комфортні перевезення з найдійними перевізниками. \n" +
-                            "Будь-ласка відвідайте наступне посилання," +
-                            " для повної активаціїї вашого акаунта " +
-                            ": http://%s/acti/%s",
-                    user.getFirstName(), "longwayeuro.herokuapp.com",user.getActivationCode());
-        }
     }
 
 
@@ -236,5 +198,15 @@ public class UserService implements UserDetailsService {
         users.removeIf(user1 -> user.getId().equals(userId));
         userRepository.save(user);
         tripRepository.save(trip);
+    }
+
+    public boolean sendSMSToUser(String username, String kode) {
+        User userFromDb = userRepository.findByUsername(username);
+        if (userFromDb != null){
+            return false;
+        }
+        String sms = "Ваш код активації:" + kode;
+        sendSMS.sendSMStoUser(username,sms);
+        return true;
     }
 }

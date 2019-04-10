@@ -29,7 +29,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -54,7 +54,7 @@
 <div class="container_profile">
     <div class="profile_form_update">
         <form name="user" role="form" action="/pass/update" method="post" enctype="multipart/form-data">
-            <h1 class="profile_name1">${user.getFirstName()} ${user.getLastName()}</h1>
+            <h1 class="profile_name1">${user.getFirstLastName()}</h1>
             <div class="message">${message!}</div>
             <h1 class="profile_name">Старий пароль</h1>
             <div class="profile_input">

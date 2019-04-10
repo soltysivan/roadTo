@@ -8,6 +8,19 @@ body{
 .formLogReg{
     padding-top: 150px;
 }
+.textsms{
+	color: white;
+}
+.textsms2{
+	color: #ece9e0;
+}
+.novesms {
+	background-color: #ff140a00;
+	border: 0;
+	cursor: pointer;
+	margin-top: 10px;
+	color: #f8f8f8;
+}
 .login-error{
 	padding: 0;
 	margin: 0 auto;

@@ -27,7 +27,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -53,7 +53,7 @@
 <div class="formLogReg">
     <div class="containerForm">
         <form name="trip" action="/city" method="POST" enctype="multipart/form-data">
-            <img src="../static/img/Регистрация-чп-бровары.png">
+            <img src="/static/img/doroga3.jpg">
             <h1 class="loginTitle">Проміжні пункти</h1>
             <input type="hidden" name="id" value="${id}">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>

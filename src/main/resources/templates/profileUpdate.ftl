@@ -29,7 +29,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -63,39 +63,15 @@
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="file" name="file">
             </div>
-            <h1 class="profile_name">Логін: ${username}</h1>
+            <h1 class="profile_name">Користувач: ${firstLastName}</h1>
             <div class="message">${message!}</div>
             <div class="profile_input">
-                <#if firstNameError??>
+                <#if firstLastNameError??>
                     <div class="invalid-input">
-                        ${firstNameError}
+                        ${firstLastNameError}
                     </div>
                 </#if>
-                <input class="${(firstNameError??)?string('invalid', '')}"  type="text" name="firstName" value="${firstName}" placeholder="Введіть імя">
-            </div>
-            <div class="profile_input">
-                <#if lastNameError??>
-                    <div class="invalid-input">
-                        ${lastNameError}
-                    </div>
-                </#if>
-                <input class="${(lastNameError??)?string('invalid', '')}"  type="text" name="lastName" value="${lastName}" placeholder="Введіть Фамілію">
-            </div>
-            <div class="profile_input">
-			<#if emailError??>
-                <div class="invalid-input">
-                    ${emailError}
-                </div>
-            </#if>
-                <input class="${(emailError??)?string('invalid', '')}"  type="email" name="email" value="${email}" placeholder="email@email.com">
-            </div>
-            <div class="profile_input">
-                <#if telephoneError??>
-                <div class="invalid-input">
-                    ${telephoneError}
-                </div>
-                </#if>
-                <input class="${(telephoneError??)?string('invalid', '')}" type="tel" id="tel" name="telephone" value="${telephone}" placeholder="Введіть ваш телефон">
+                <input class="${(firstLastNameError??)?string('invalid', '')}"  type="text" name="firstLastName" value="${firstLastName}" placeholder="Введіть імя і фамілію">
             </div>
             <br/>
             <input class="profile_button" type="submit"  value="Підтвердити">

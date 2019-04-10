@@ -31,7 +31,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -57,52 +57,20 @@
 <div class="formLogReg">
 	<div class="containerForm">
 		<form name="user" role="form" action="/registration" method="POST" enctype="multipart/form-data">
-			<img src="../static/img/Регистрация-чп-бровары.png">
+			<img src="/static/img/reg.png">
 			<h1 class="loginTitle">Реєстрація</h1>
             <div class="message">${message!}</div>
+            <input type="hidden" name="username" value="${username?ifExists}">
             <div class="dws-input">
-                <#if firstNameError??>
+                <#if firstLastNameError??>
                     <div class="invalid-input">
-                        ${firstNameError}
+                        ${firstLastNameError}
                     </div>
                 </#if>
-                <input class="${(firstNameError??)?string('invalid', '')}" value="<#if user??>${user.firstName}</#if>" type="text" name="firstName" placeholder="Введіть імя">
-            </div>
-            <div class="dws-input">
-                <#if lastNameError??>
-                    <div class="invalid-input">
-                        ${lastNameError}
-                    </div>
-                </#if>
-                <input class="${(lastNameError??)?string('invalid', '')}" value="<#if user??>${user.lastName}</#if>" type="text" name="lastName" placeholder="Введіть Фамілію">
-            </div>
-            <div class="dws-input">
-                <#if usernameError??>
-                <div class="invalid-input">
-                    ${usernameError}
-                </div>
-                </#if>
-                <input class="${(usernameError??)?string('invalid', '')}" value="<#if user??>${user.username}</#if>" type="text" name="username" placeholder="Введіть Login">
-            </div>
-            <div class="dws-input">
-			<#if emailError??>
-                <div class="invalid-input">
-                    ${emailError}
-                </div>
-            </#if>
-                <input class="${(emailError??)?string('invalid', '')}" type="email" name="email" value="<#if user??>${user.email}</#if>" placeholder="email@email.com">
-		</div>
-            <div class="dws-input">
-                <#if telephoneError??>
-                <div class="invalid-input">
-                    ${telephoneError}
-                </div>
-                </#if>
-                <input class="${(telephoneError??)?string('invalid', '')}" type="tel" id="tel" name="telephone" value="<#if user??>${user.telephone}</#if>" placeholder="Введіть ваш телефон">
+                <input class="${(firstLastNameError??)?string('invalid', '')}" value="<#if user??>${user.firstLastName}</#if>" type="text" name="firstLastName" placeholder="Введіть Імя та Фамілію">
             </div>
 		<div class="dws-input">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
 			<#if passwordError??>
                 <div class="invalid-input">
                     ${passwordError}
@@ -127,7 +95,7 @@
             <div class="g-recaptcha" data-sitekey="6LctgpwUAAAAACwBapdmIuMq4bfXMFURUaOPtblM"></div>
             </div>
 			<br/>
-			<input class="dws-submitReg" type="submit"  value="Підтвердити">
+			<input class="dws-submitReg" type="submit"  value="Завершити реєстрацію">
 		</form>
 	</div>
 </div>

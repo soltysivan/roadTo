@@ -5,7 +5,7 @@
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
     <title>Login</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
-	<link rel="stylesheet" href="../static/css/formStyle.css" type =text/css>
+	<link rel="stylesheet" href="/static/css/formStyle.css" type =text/css>
     <link rel="stylesheet" href="/static/css/index.css" type="text/css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css" type="text/css">
     <link rel="stylesheet" href="/static/css/mediaForm.css" type="text/css">
@@ -30,7 +30,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="/registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -56,7 +56,7 @@
 <div class="formLogReg">
 	<div class="containerForm">
 		<form  action="/login" method="post">
-			<img src="../static/img/user.png">
+			<img src="/static/img/user.png">
 
             <div class="active">${ac?ifExists}</div>
 		<div class="dws-input">
@@ -65,7 +65,7 @@
                     ${usernameError}
                 </div>
             </#if>
-			<input class="${(usernameError??)?string('invalid', '')}" type="text" name="username" placeholder="Введіть Login">
+			<input  id="phone" class="${(usernameError??)?string('invalid', '')}" type="text" name="username" placeholder="Введіть телефон">
 		</div>
             <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
             <div class="login-error">
@@ -82,12 +82,18 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 		</div>
 			<br/>
-            <a href="/registration" class="button1">Реєстрація</a>
+            <a href="registration/tel" class="button1">Реєстрація</a>
 			<input class="dws-submit" type="submit" href="/welcome" name="login" value="Вхід">
 		</form>
         <div >
         </div>
 	</div>
 </div>
+<script src="/static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $("#phone").mask("+38(099) 999-99-99");
+    });
+</script>
 </body>
 </html>

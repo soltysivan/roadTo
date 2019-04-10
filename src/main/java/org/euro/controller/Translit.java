@@ -8,8 +8,6 @@ public class Translit {
 
     public String getNik(String firstName, String lastName ){
         Random rnd = new Random();
-
-
         String result;
         result = Character.toString(firstName.charAt(0));
         if (lastName.length() > 5)

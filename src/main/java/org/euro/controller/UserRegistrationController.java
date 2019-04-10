@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class UserRegistrationController {
@@ -35,15 +36,11 @@ public class UserRegistrationController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/registration")
-    public String getUserRegistrationPage(){
-        return "registration";
-    }
-
     @PostMapping("/registration")
     public String saveUser(@RequestParam("password2") String passwordConfirm,
                            @RequestParam String password,
                            @RequestParam("g-recaptcha-response") String captchaResponce,
+                           @RequestParam String username,
                            @Valid User user,
                            BindingResult bindingResult,
                            Model model) throws IOException {
@@ -51,7 +48,7 @@ public class UserRegistrationController {
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
         if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Fill captcha");
+            model.addAttribute("captchaError", "Підтвердіть що ви не робот");
         }
 
         boolean isConfirm =StringUtils.isEmpty(passwordConfirm);
@@ -59,25 +56,70 @@ public class UserRegistrationController {
         if (isConfirm || bindingResult.hasErrors() || !response.isSuccess()){
             Map<String, String> errors = UtilsController.getErrors(bindingResult);
             model.mergeAttributes(errors);
+            model.addAttribute("username", username);
             return "registration";
         }
         if (isConfirm2){
             model.addAttribute("passwordError", "Пароль не може бути пустим");
+            model.addAttribute("username", username);
             return "registration";
         }
         if (isConfirm){
             model.addAttribute("password2Error", "Підтвердження паролю не може бути пустим");
+            model.addAttribute("username", username);
             return "registration";
         }
         if (user.getPassword()!= null && !user.getPassword().equals(passwordConfirm)){
             model.addAttribute("password2Error", "Паролі не рівні");
+            model.addAttribute("username", username);
             return "registration";
         }
-        if (!userService.addUser(user)){
-            model.addAttribute("usernameError","Користувач з таким іменем існує!");
-            return "registration";
-        }
+        userService.addUser(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("registration/tel")
+    public String getRegistrationTelPage (){
+        return "registrationTel";
+    }
+
+    @PostMapping("registration/tel")
+    public String sendSmS(@RequestParam String username, Model model){
+        Random random = new Random();
+        int kode = random.nextInt(9999);
+        String kodeString = String.valueOf(kode);
+        if (!userService.sendSMSToUser(username , kodeString)){
+            model.addAttribute("usernameError","Користувач з таким телефон вже існує!");
+            return "registrationTel";
+        }
+        model.addAttribute("kode", kodeString);
+        model.addAttribute("username", username);
+        return "registrationTelActivate";
+    }
+    @PostMapping("/acti/again")
+    public String newCode(@RequestParam String username, Model model){
+        Random random = new Random();
+        int kode = random.nextInt(9999);
+        String kodeString = String.valueOf(kode);
+        userService.sendSMSToUser(username, kodeString);
+        model.addAttribute("kode", kodeString);
+        model.addAttribute("username", username);
+        return "registrationTelActivate";
+    }
+    @PostMapping("/regisrtation/tel/acti")
+    public String activationCode(@RequestParam String username,
+                                 @RequestParam String kode,
+                                 @RequestParam String kodeInput,
+                                 Model model){
+
+        if (!kodeInput.equals(kode)){
+            model.addAttribute("kode", kode);
+            model.addAttribute("username", username);
+            model.addAttribute("kodeInputError", "Невірий код");
+            return "registrationTelActivate";
+        }
+        model.addAttribute("username", username);
+        return "registration";
     }
 
     @GetMapping("/acti/{code}")

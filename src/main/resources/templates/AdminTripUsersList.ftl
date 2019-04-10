@@ -28,7 +28,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -60,9 +60,8 @@
     </tr>
 <#list users as user>
     <tr>
+        <td>${user.firstLastName}</td>
         <td>${user.username}</td>
-        <td>${user.telephone}</td>
-        <td>${user.email}</td>
         <td>
             <form action="/del/trip/${tripId}/${user.id}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>

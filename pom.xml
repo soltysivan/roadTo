@@ -64,6 +64,14 @@
         <artifactId>spring-session-jdbc</artifactId>
     </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.35.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -76,6 +84,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.35.1</version>
         </dependency>
 
         <!--&lt;!&ndash;FLYWAY міграція бд&ndash;&gt;-->

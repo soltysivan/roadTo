@@ -61,8 +61,6 @@ public class UserController {
         model.addAttribute("id", user.getId());
         model.addAttribute("avatar", user.getAvatar());
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("telephone", user.getTelephone());
         model.addAttribute("roles", Role.values());
         return "updateUser";
     }
@@ -71,10 +69,9 @@ public class UserController {
     @PostMapping("/edit/save")
     public String saveUpdateUser(@RequestParam Long id,
                                  @RequestParam String username,
-                                 @RequestParam String email,
                                  @RequestParam String telephone,
                                  @RequestParam Map<String, String> form) {
-        userService.saveUser(id, username, email, telephone, form);
+        userService.saveUser(id, username, form);
         return "redirect:/list/user";
     }
 
@@ -133,10 +130,7 @@ public class UserController {
     private void setAtributeToProfilePage(Model model, @AuthenticationPrincipal User user) throws UnsupportedEncodingException {
         User user1 = userService.findById(user.getId());
         model.addAttribute("username", user1.getUsername());
-        model.addAttribute("firstName", user1.getFirstName());
-        model.addAttribute("lastName", user1.getLastName());
-        model.addAttribute("email", user1.getEmail());
-        model.addAttribute("telephone", user1.getTelephone());
+        model.addAttribute("firstLastName", user1.getFirstLastName());
         model.addAttribute("password", user1.getPassword());
         if (user1.getAvatar()!= null) {
             FileDB fileDB = fileDBService.findById(user1.getAvatar());
@@ -165,7 +159,7 @@ public class UserController {
         setAtributeToProfilePage(model, user1);
             return "profileUpdate";
         }
-        userService.updateProfile(user1, user.getFirstName(), user.getLastName(), user.getEmail(), user.getTelephone(), file);
+        userService.updateProfile(user1, user.getUsername(), user.getFirstLastName(),  file);
         return "redirect:/profile";
     }
     @GetMapping("/pass/update")

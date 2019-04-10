@@ -5,8 +5,8 @@
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
     <title>User List</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/welcome.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="/static/css/welcome.css">
+    <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/eStyle.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
 </head>
@@ -28,7 +28,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -56,16 +56,14 @@
         <div class="dostup">Кількість зареєстрованих користувачів - ${size}</div>
         <tr>
             <th>Імя</th>
-            <th>Email</th>
             <th>Телефон</th>
             <th>Роль</th>
             <th></th>
         </tr>
 <#list users as user>
     <tr>
-        <td><a href="/edit/${user.id}">${user.username}</a></td>
-        <td>${user.email}</td>
-        <td>${user.telephone}</td>
+        <td><a href="/edit/${user.id}">${user.firstLastName}</a></td>
+        <td>${user.username}</td>
         <td><#list user.roles as roles>${roles}<#sep>, </#list></td>
         <td><a href="/delete/${user.id}">Del</a></td>
     </tr>

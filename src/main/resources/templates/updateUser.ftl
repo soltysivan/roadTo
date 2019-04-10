@@ -5,7 +5,7 @@
     <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
     <title>Edit</title>
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
-    <link rel="stylesheet" href="../static/css/formStyle.css">
+    <link rel="stylesheet" href="/static/css/formStyle.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/mediaIndex.css">
 </head>
@@ -27,7 +27,7 @@
                     </#if>
             <a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="/registration" class="burger-menu_link" >Реєстрація</a>
+	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
     </#if>
 	<#if user??>
@@ -58,14 +58,11 @@
             <div class="message">${message!}</div>
             <div class="dws-input">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <input type="text" name="username" placeholder="Введіть імя" value="${username}">
+                <input type="text" name="firstLastName" placeholder="Введіть імя" value="${firstLastName}">
             </div>
             <div class="dws-input">
-                <input type="email" name="email" placeholder="email@email.com" value="${email}">
+                <input type="email" name="username" placeholder="email@email.com" value="${username}">
                 <input type="hidden" name="id" value="${id}">
-            </div>
-            <div class="dws-input">
-                <input type="tel" id="tel" name="telephone" value="${telephone}" placeholder="Введіть ваш телефон">
             </div>
                  <#list roles as roles>
                      <div>
