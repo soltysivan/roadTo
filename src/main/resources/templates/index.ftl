@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="/static/css/mediaIndex.css">
     <link rel="shortcut icon" href="/static/img/ic.png" type="image/x-icon">
 	<script src="https://www.google.com/recaptcha/api.js"></script>
+	<script defer src="/static/js/jquery-3.3.1.min.js"></script>
+	<script defer src="/static/js/script.js"></script>
 </head>
 <body>
 
@@ -28,7 +30,7 @@
 					</#if>
 	<a href="/info" class="burger-menu_link">Інфо</a>
 	<#if !user??>
-	<a href="registration/tel" class="burger-menu_link" >Реєстрація</a>
+	<a href="/registration/tel" class="burger-menu_link" >Реєстрація</a>
 	<a href="/login" class="burger-menu_link">Вхід</a>
 	</#if>
 	<#if user??>
@@ -48,8 +50,7 @@
     </div>
     </div>
 
-	<script src="/static/js/jquery-3.3.1.min.js"></script>
-	<script src="/static/js/script.js"></script>
+
 
 	<header class="headerMain">
 		<div class="container">
