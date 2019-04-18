@@ -71,9 +71,9 @@ public class UserController {
     @PostMapping("/edit/save")
     public String saveUpdateUser(@RequestParam Long id,
                                  @RequestParam String username,
-                                 @RequestParam String telephone,
+                                 @RequestParam String firstLastName,
                                  @RequestParam Map<String, String> form) {
-        userService.saveUser(id, username, form);
+        userService.saveUser(id, username, firstLastName, form);
         return "redirect:/list/user";
     }
 

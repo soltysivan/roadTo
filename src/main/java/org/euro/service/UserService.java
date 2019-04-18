@@ -105,9 +105,10 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(userId);
     }
 
-    public void saveUser(Long userId, String username, Map<String, String> form) {
+    public void saveUser(Long userId, String username, String firstLastName, Map<String, String> form) {
         User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));
         user.setUsername(username);
+        user.setFirstLastName(firstLastName);
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
                 .collect(Collectors.toSet());
