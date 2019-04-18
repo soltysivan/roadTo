@@ -62,6 +62,7 @@ public class UserController {
         model.addAttribute("id", user.getId());
         model.addAttribute("avatar", user.getAvatar());
         model.addAttribute("username", user.getUsername());
+        model.addAttribute("firstLastName", user.getFirstLastName());
         model.addAttribute("roles", Role.values());
         return "updateUser";
     }
