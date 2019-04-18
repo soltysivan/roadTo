@@ -61,7 +61,7 @@
                 <input type="text" name="firstLastName" placeholder="Введіть імя" value="${firstLastName}">
             </div>
             <div class="dws-input">
-                <input type="email" name="username" placeholder="email@email.com" value="${username}">
+                <input type="tel" name="username" placeholder="+38099999999" value="${username}">
                 <input type="hidden" name="id" value="${id}">
             </div>
                  <#list roles as roles>
